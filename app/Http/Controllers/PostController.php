@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Routing\Controllers\Middleware;
@@ -12,7 +13,7 @@ class PostController extends Controller implements HasMiddleware
     public static function middleware()
     {
         return [
-            new Middleware('auth:sanctum',except: ['index','show'])
+            new Middleware('auth:sanctum', except: ['index','show'])
         ];
     }
     
@@ -58,6 +59,6 @@ class PostController extends Controller implements HasMiddleware
 
         $post->delete();
 
-        return ["post deleted"=> 'deleted'];
+        return ['message' => 'deleted'];
     }
 }

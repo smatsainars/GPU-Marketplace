@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,7 +38,7 @@ class AuthController extends Controller
 
         if(!$user || !Hash::check($request->password, $user->password)){
             return [
-                'message' => 'incorect someting '
+                'message' => 'Incorrect credentials!'
             ];
         }
         
@@ -48,12 +49,12 @@ class AuthController extends Controller
             'token' => $token->plainTextToken
         ];
     }
-
+    
     public function logout(Request $request){
         $request->user()->tokens('')->delete();
 
         return [
-            'message' => 'Logged out ssssssssss'
+            'message' => 'Logged out!'
         ];
     }
 }
