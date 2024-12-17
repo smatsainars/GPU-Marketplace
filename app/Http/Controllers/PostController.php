@@ -59,6 +59,6 @@ class PostController extends Controller implements HasMiddleware
 
         $post->delete();
 
-        return ['message' => 'deleted'];
+        return ['message' => "Your post has been deleted!"];
     }
 }
