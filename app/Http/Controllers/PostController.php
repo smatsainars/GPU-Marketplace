@@ -15,17 +15,12 @@ class PostController extends Controller implements HasMiddleware
             new Middleware('auth:sanctum',except: ['index','show'])
         ];
     }
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return Post::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $fields = $request->validate([
@@ -38,20 +33,15 @@ class PostController extends Controller implements HasMiddleware
         return ['post' => $post];
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Post $post)
     {
         return ['post' => $post];
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Post $post)
     {
         Gate::authorize('modify', $post);
+
         $fields = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required'
@@ -62,13 +52,12 @@ class PostController extends Controller implements HasMiddleware
         return $post;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Post $post)
     {
-        Gate::authorize('', $post);
+        Gate::authorize('modify', $post);
+
         $post->delete();
-        return ["sss"=> 'deleted'];
+
+        return ["post deleted"=> 'deleted'];
     }
 }
