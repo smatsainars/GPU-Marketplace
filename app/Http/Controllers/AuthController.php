@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
 
 class AuthController extends Controller
 {
@@ -34,11 +34,11 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
         if(!$user || !Hash::check($request->password, $user->password)){
             return [
-                'message' => 'incorect someting '
+                'message' => 'Incorrect credentials!'
             ];
         }
         
@@ -54,7 +54,7 @@ class AuthController extends Controller
         $request->user()->tokens('')->delete();
 
         return [
-            'message' => 'Logged out '
+            'message' => 'Logged out!'
         ];
     }
 }
