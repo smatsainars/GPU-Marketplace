@@ -9,7 +9,7 @@ export default defineConfig({
         target: 'http://127.0.0.1:8000',
         changeOrigin: true,
         headers:{
-          Accept: 'application/jason',
+          Accept: 'application/json',
           "Content-Type": 'application/json',
         }
       }
